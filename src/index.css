@@ -3,57 +3,51 @@
 @tailwind utilities;
 
 #root {
-	--primary: "#1EA896";
-	--secondary: "#FF715B";
-	--tertiary: "#523F38";
-	--dark: "#4C5454";
-	--light: "#FFFFFF";
+	--primary: #1ea896;
+	--secondary: #ff715b;
+	--tertiary: #523f38;
+	--dark: #4c5454;
+	--light: #ffffff;
 }
-
-.poppins-extralight {
+* {
 	font-family: "Poppins", sans-serif;
-	font-weight: 200;
-	font-style: normal;
 }
-
-.poppins-light {
-	font-family: "Poppins", sans-serif;
+.body-text {
 	font-weight: 300;
 	font-style: normal;
 }
-
-.poppins-regular {
-	font-family: "Poppins", sans-serif;
-	font-weight: 400;
+.label-text {
+	font-weight: 600;
 	font-style: normal;
 }
-
-.poppins-medium {
-	font-family: "Poppins", sans-serif;
-	font-weight: 500;
+.subtitle-heading {
+	font-size: 20px;
+	font-weight: 700;
 	font-style: normal;
 }
-
-.poppins-semibold {
-	font-family: "Poppins", sans-serif;
+.title-heading {
+	font-size: 24px;
 	font-weight: 600;
 	font-style: normal;
 }
 
-.poppins-bold {
-	font-family: "Poppins", sans-serif;
-	font-weight: 700;
-	font-style: normal;
+.input-shadow {
+	box-shadow: #523f387a 1.95px 2.5px 0px;
 }
 
-.poppins-extrabold {
-	font-family: "Poppins", sans-serif;
-	font-weight: 800;
-	font-style: normal;
-}
 
-.poppins-black {
-	font-family: "Poppins", sans-serif;
-	font-weight: 900;
-	font-style: normal;
+.mobile_menu_backdrop {
+	backdrop-filter: blur(2px);
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	visibility: hidden;
+	opacity: 0;
+	transition: opacity 150ms ease-in-out;
+}
+.mobile_menu_backdrop.open {
+	visibility: visible;
+	opacity: 1;
 }
