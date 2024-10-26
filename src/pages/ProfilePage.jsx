@@ -5,7 +5,7 @@ import punctualityBadge from "../assets/badges/badge_punctuality.svg";
 import fiveTaskStreakBadge from "../assets/badges/badge_five_task_streak.svg";
 import fifteenTaskStreakBadge from "../assets/badges/badge_fifteen_task_streak.svg";
 import rewardShape from "../assets/graphics/reward_shape.svg";
-import BottomBlopShape from "../assets/graphics/blob_no_backdrop.svg";
+import BottomBlopShape from "../assets/graphics/blop_no_backdrop.svg";
 
 const userBadges = {
 	1: true,
@@ -67,12 +67,12 @@ const badgelist = [
 export default function ProfilePage() {
 	const currentUser = {
 		id: 10,
-		username: "user123",
+		username: "Christopher",
 		avatar_url:
 			"https://icons.iconarchive.com/icons/iconarchive/robot-avatar/512/Green-1-Robot-Avatar-icon.png",
-		total_points: 100,
+		total_points: 90,
 		start_date: "jun, 2023",
-		badges: [1, 4, 5], //array of earned badge ids
+		badges: [1, 4, 5],
 		rewards: [
 			{
 				id: 1,
@@ -96,7 +96,7 @@ export default function ProfilePage() {
 		],
 	};
 	return (
-		<div className="p-4 mt-5 grid gap-8">
+		<div className="p-4 mt-5 grid gap-8 bg-primary">
 			<h2 className="subtitle-heading text-lightest">ProfilePage</h2>
 			<div className="text-lightest flex justify-between items-center bg-dark  bg-opacity-35 border-lightest border-opacity-35   border-[1px] rounded-2xl px-3 py-2">
 				<div className="flex items-center gap-4">
@@ -116,7 +116,10 @@ export default function ProfilePage() {
 				</div>
 			</div>
 			<div>
-				<h2 className="subtitle-heading text-lightest mb-2">Badges</h2>
+				<div className="flex justify-between items-center">
+					<h2 className="subtitle-heading text-lightest mb-4">Badges</h2>
+					<span className="text-lightest ">See All</span>
+				</div>
 
 				<ul className="grid grid-cols-3 gap-4 justify-between">
 					{badgelist.map((badge) => {
@@ -170,11 +173,11 @@ export default function ProfilePage() {
 					)}
 				</div>
 			</div>
-			<img
+			{/* <img
 				src={BottomBlopShape}
 				alt="blop shape"
 				className="absolute -bottom-28  left-0 right-0"
-			/>
+			/> */}
 		</div>
 	);
 }
