@@ -9,6 +9,7 @@ import calendar from "../assets/icons/calendar.svg";
 import coin from "../assets/icons/coin.svg";
 import mealPrep from "../assets/icons/mealprep_icon.svg";
 import timeIcon from "../assets/icons/time_icon_light.svg";
+import { formatDate } from "../utils/formatters";
 
 const categoryIcons = {
 	1: errandIcon,
@@ -18,9 +19,6 @@ const categoryIcons = {
 	5: variousIcon,
 	6: mealPrep,
 };
-
-// const cardColors = ["tertiary", "secondary", "dark"];
-const cardColors = ["test1", "test2", "test3"];
 
 export default function Request({ request, index }) {
 	return (
@@ -60,7 +58,7 @@ export default function Request({ request, index }) {
 				<div className="flex justify-between px-1">
 					<p className="body-text flex items-center gap-2">
 						<img className="w-6 " src={calendar} alt="calendar" />
-						<span>{request.date}</span>
+						<span>{formatDate(request.date)}</span>
 					</p>
 					<p className="body-text flex items-center gap-1">
 						<img className="w-5" src={timeIcon} alt="coin" />
