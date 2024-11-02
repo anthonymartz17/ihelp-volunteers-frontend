@@ -22,8 +22,10 @@ import location from "../assets/icons/location.svg";
 import ConfirmationAlert from "../componets/UI/ConfirmationAlert";
 import AlertMessage from "../componets/UI/AlertMessage";
 import blobShape from "../assets/graphics/blop_no_backdrop.svg";
-import { useRequestDetail } from "../hooks/useRequestDetails";
 import ServerError from "../componets/UI/ServerError";
+import { useRequestDetail } from "../hooks/useRequestDetails";
+import { useCommitTask } from "../hooks/useCommitTask";
+
 const currentUser = {
 	id: 10,
 	username: "user123",
@@ -50,7 +52,17 @@ export default function RequestDetailPage() {
 	const navigate = useNavigate();
 	const { id } = useParams();
 
-	const { requestDetail, isLoading, error } = useRequestDetail(id);
+	const {
+		commit,
+		isLoading: isLoadingCommit,
+		error: errorCommit,
+	} = useCommitTask();
+
+	const {
+		requestDetail,
+		isLoading: isLoadingRequestDetail,
+		error: errorRequestDetail,
+	} = useRequestDetail(id);
 
 	const [selectedTask, setSelectedTask] = useState(null);
 	const [isAlertOpen, setIsAlertOpen] = useState(false);
@@ -83,28 +95,35 @@ export default function RequestDetailPage() {
 			setAlertMessage("Oops! A task must be selected first.");
 		}
 	}
-	function handleCommitToTask() {
-		// Update the task status to "assigned"
-
-		navigate(`/account/quest/request/${requestDetail.id}/task/:id`);
+	async function handleCommitToTask() {
+		try {
+			await commit(selectedTask.id, currentUser.accessToken);
+			setAlertMessage("Task committed successfully!");
+			setIsAlertOpen(true);
+			navigate(`/account/commitments`);
+		} catch (error) {
+			setAlertMessage("Error committing task. Please try again.");
+			setIsAlertOpen(true);
+		}
 	}
 
 	return (
-		<div className=" text-dark  bg-secondary overflow-y-hidden">
-			{/* <Blob  /> */}
-			<div className="flex items-center text-light gap-3 mb-8 px-4">
+		<div className=" text-dark  bg-secondary  overflow-y-hidden relative min-h-[100vh]  pt-4">
+			<div className="flex items-center  text-light gap-3 mb-12 px-4">
 				<Link to="/account" className="mt-2">
 					<span className="material-symbols-outlined ">arrow_back_ios</span>
 				</Link>
-				<h2 className="title-heading text-lightest ">Request Details</h2>
+				<h2 className="title-heading text-lightest text-center w-full">
+					Request Details
+				</h2>
 			</div>
-			{isLoading && (
+			{isLoadingRequestDetail && (
 				<div className="flex justify-center pt-40 h-screen">
 					<div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-light"></div>
 				</div>
 			)}
-			{error && <ServerError />}
-			{!isLoading && !error && (
+			{errorRequestDetail && <ServerError />}
+			{!isLoadingRequestDetail && !errorRequestDetail && (
 				<div>
 					<div className="bg-light  rounded-lg p-3 py-6 mx-4 flex flex-col gap-5 mb-6">
 						<div className="flex justify-between items-center rounded-lg ">
@@ -235,7 +254,7 @@ export default function RequestDetailPage() {
 					<div className="mx-4">
 						<button
 							onClick={() => tryCommitToTask()}
-							className={`subtitle-heading  w-full card-shadow rounded-lg py-3 text-lightest ${
+							className={`subtitle-heading mb-[15em]  w-full card-shadow rounded-lg py-3 text-lightest ${
 								!selectedTask
 									? "opacity-40 pointer-events-none bg-dark"
 									: "bg-primary"

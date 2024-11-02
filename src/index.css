@@ -12,6 +12,16 @@
 * {
 	font-family: "Poppins", sans-serif;
 }
+.title-heading {
+	font-size: 20px;
+	font-weight: 600;
+	font-style: normal;
+}
+.subtitle-heading {
+	font-size: 16px;
+	font-weight: 700;
+	font-style: normal;
+}
 .body-text {
 	font-weight: 300;
 	font-style: normal;
@@ -27,16 +37,6 @@
 	font-weight: 600;
 	font-style: normal;
 }
-.subtitle-heading {
-	font-size: 18px;
-	font-weight: 700;
-	font-style: normal;
-}
-.title-heading {
-	font-size: 22px;
-	font-weight: 600;
-	font-style: normal;
-}
 
 .input-shadow {
 	box-shadow: #523f387a 1.95px 2.5px 0px;
@@ -46,6 +46,10 @@
 }
 .card-shadow-primary {
 	box-shadow: #157569 3px 4px 0px;
+}
+
+.shadow-generic {
+	box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 .cilinder-shadow {
 	box-shadow: #b24f3f 0px 8px 0px;
@@ -119,4 +123,14 @@ input[type="range"] {
 	height: 6px;
 	background-color: #007bff;
 	z-index: 2;
+}
+
+.layout-with-header {
+	display: grid;
+	grid-template-rows: 10% 1fr;
+	grid-gap: 20px;
+	height: 100%;
+}
+.layout-no-header {
+	height: 100%;
 }
