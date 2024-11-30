@@ -17,7 +17,7 @@ export default function WithHeaderLayout({ children }) {
 	}
 
 	return (
-		<div className={`${getBgColor()} layout-with-header`}>
+		<div className={`${getBgColor()} layout-with-header overflow-y-auto`}>
 			<header>
 				<Header />
 			</header>
